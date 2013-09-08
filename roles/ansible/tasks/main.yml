@@ -1,7 +1,4 @@
 ---
-- name: "ensure epel is installed"
-  yum: name="http://mirror.pnl.gov/epel/6/i386/epel-release-6-8.noarch.rpm"
-       state=present
 - name: "ensure ansible is installed"
   yum: name="ansible" enablerepo=epel state=latest
 
