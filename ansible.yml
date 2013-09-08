@@ -1,0 +1,5 @@
+---
+- hosts: ansible
+  sudo: yes
+  roles:
+    - ansible

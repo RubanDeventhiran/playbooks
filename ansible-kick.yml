@@ -1,0 +1,5 @@
+---
+- hosts: "ansible-kick"
+  sudo: yes
+  roles:
+    - "ansible-kick"

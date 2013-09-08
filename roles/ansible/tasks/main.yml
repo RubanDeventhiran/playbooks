@@ -1,0 +1,19 @@
+---
+- name: "ensure epel is installed"
+  yum: name="http://mirror.pnl.gov/epel/6/i386/epel-release-6-8.noarch.rpm"
+       state=present
+- name: "ensure ansible is installed"
+  yum: name="ansible" enablerepo=epel state=latest
+
+- name: "ensure the ansible config is in place"
+  template: src="ansible.cfg.j2" dest="/etc/ansible/ansible.cfg"
+
+- name: "ensure the ssh_keys directory is present"
+  file: path="/etc/ansible/ssh_keys" owner=root group=root mode=0755
+        state=directory
+
+- name: "ensure the ansible ssh private key is in place"
+  copy: src="/etc/ansible/ssh_keys/id_rsa_ansible"
+        dest="/etc/ansible/ssh_keys/id_rsa_ansible"
+        owner=root group=root mode=0600
+

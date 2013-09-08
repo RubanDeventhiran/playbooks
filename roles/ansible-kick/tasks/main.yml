@@ -1,0 +1,12 @@
+---
+- name: "ensure the ansiblekick user exists"
+  user: name="ansiblekick" createhome=yes state=present
+
+- name: "ensure the .ssh directory exists"
+  file: path="/home/ansiblekick/.ssh" owner=ansiblekick group=ansiblekick
+        mode=0700 state=directory 
+
+- name: "ensure the authorized_keys file is correct"
+  copy: src="/etc/ansible/ssh_keys/ansible_kick_authorized_keys"
+        dest="/home/ansiblekick/.ssh/authorized_keys"
+        owner=ansiblekick group=ansiblekick mode=0644
