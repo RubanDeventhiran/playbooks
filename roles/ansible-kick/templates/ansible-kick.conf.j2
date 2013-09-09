@@ -1,0 +1,9 @@
+[aws]
+access_key_id = "{{ ansible_kick["aws_access_key_id"] }}"
+secret_access_key = "{{ ansible_kick["aws_secret_access_key"] }}"
+region = "{{ ansible_kick["aws_region"] }}"
+
+[ansible]
+command = "{{ ansible_playbook_cmd }}"
+hosts_template = "{{ ansible_kick["host_template"] }}"
+playbook_path = "{{ ansible_playbook_path }}"

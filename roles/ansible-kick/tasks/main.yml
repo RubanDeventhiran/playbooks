@@ -10,3 +10,11 @@
   copy: src="/etc/ansible/ssh_keys/ansible_kick_authorized_keys"
         dest="/home/ansiblekick/.ssh/authorized_keys"
         owner=ansiblekick group=ansiblekick mode=0644
+
+- name: "ensure ansible-kick.conf is correct"
+  template: src="ansible-kick.conf.j2" dest="/etc/ansible-kick.conf"
+            owner=root group=root mode=0644
+
+- name: "ensure ansible hosts template is correct"
+  copy: src="hosts.tmpl" dest="/etc/hosts.tmpl"
+        owner=root group=root mode=0644
