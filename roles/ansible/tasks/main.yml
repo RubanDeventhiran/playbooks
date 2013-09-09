@@ -2,6 +2,9 @@
 - name: "ensure ansible is installed"
   yum: name="ansible" enablerepo=epel state=latest
 
+- name: "ensure git is installed"
+  yum: name="git" enablerepo=epel state=latest
+
 - name: "ensure the ansible config is in place"
   template: src="ansible.cfg.j2" dest="/etc/ansible/ansible.cfg"
 
@@ -14,3 +17,6 @@
         dest="/etc/ansible/ssh_keys/id_rsa_ansible"
         owner=root group=root mode=0600
 
+- name: "ensure ansible playbooks are checked out"
+  git: repo="https://github.com/kelseyhightower/playbooks.git"
+       dest="/etc/ansible/playbooks" force=yes update=yes
