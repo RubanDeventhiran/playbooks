@@ -1,0 +1,4 @@
+---
+- hosts: golang
+  roles:
+    - golang

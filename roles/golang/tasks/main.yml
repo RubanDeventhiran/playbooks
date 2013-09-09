@@ -1,0 +1,22 @@
+---
+- name: "download golang linux binary distribution"
+  get_url: url="https://go.googlecode.com/files/go1.1.2.linux-amd64.tar.gz"
+           dest="/tmp/go1.1.2.linux-amd64.tar.gz"
+
+- name: "extract golang"
+  command: /bin/tar -xzf /tmp/go1.1.2.linux-amd64.tar.gz -C /usr/local/
+           creates=/usr/local/go/bin/go
+
+- name: "setup GOROOT and GOROOT/bin to the PATH"
+  copy: src="golang.sh" dest="/etc/profile.d/golang.sh"
+        mode=0644 owner=root group=root
+
+- name: "setup GOPATH"
+  file: path="/opt/workspace/go/src" state=directory
+- file: path="/opt/workspace/go/bin" state=directory
+- file: path="/opt/workspace/go/pkg" state=directory
+
+- apt: pkg=git state=latest
+- apt: pkg=bzr state=latest
+- apt: pkg=mercurial state=latest
+- apt: pkg=rsync state=latest
